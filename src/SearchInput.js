@@ -1,12 +1,12 @@
-const SearchInput = ({ Camil, buttonText, getInput }) => {
+const SearchInput = ({ handleOnClick, buttonText, getInput }) => {
   return (
     <div>
       <input
         onChange={(el) => {
-          getInput(el.target.value, "nikola");
+          getInput(el.target.value);
         }}
       ></input>
-      <button onClick={Camil}>{buttonText}</button>
+      <button onClick={handleOnClick}>{buttonText}</button>
     </div>
   );
 };

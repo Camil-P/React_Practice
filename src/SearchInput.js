@@ -1,4 +1,9 @@
+import { useState } from "react";
+
 const SearchInput = ({ handleOnClick, buttonText, getInput }) => {
+  const [inputedImg, setInputedImg] = useState(null);
+  console.log(inputedImg);
+
   return (
     <div>
       <input
@@ -6,7 +11,13 @@ const SearchInput = ({ handleOnClick, buttonText, getInput }) => {
           getInput(el.target.value);
         }}
       ></input>
-      <button onClick={handleOnClick}>{buttonText}</button>
+
+      <input
+        type="file"
+        onChange={(el) => setInputedImg(el.target.files[0])}
+      ></input>
+
+      <button onClick={() => handleOnClick(inputedImg)}>{buttonText}</button>
     </div>
   );
 };

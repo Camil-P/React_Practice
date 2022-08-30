@@ -14,7 +14,6 @@ export default function News() {
         `https://newsapi.org/v2/everything?q=bitcoin&from=2022-08-25&sortBy=popularity&apiKey=${NEWS_KEY}`
       )
       .then((res) => {
-        console.log(res);
         setNews(res.data.articles);
       })
       .catch((m) => console.log);

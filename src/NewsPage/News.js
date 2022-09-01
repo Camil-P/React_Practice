@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import { Grid } from "@mui/material";
 import NewsCard from "./NewsCard";
+import { Link } from "react-router-dom";
 
 export default function News() {
   const [news, setNews] = useState([]);
@@ -28,9 +29,11 @@ export default function News() {
       spacing={1}
       sx={{ marginTop: "40px" }}
     >
-      {news.map((n) => (
+      {news.map((n, i) => (
         <Grid xs="auto">
-          <NewsCard data={n} />
+          <Link to={{ pathname: "/news-card/" + i, state: n }}>
+            <NewsCard data={n} />
+          </Link>
         </Grid>
       ))}
     </Grid>

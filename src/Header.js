@@ -6,16 +6,10 @@ import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
 import IconButton from "@mui/material/IconButton";
 import MenuIcon from "@mui/icons-material/Menu";
+import CustomLink from "./Link";
+import { Link } from "react-router-dom";
 
 const Header = () => {
-  const handleOnClick = (event) => {
-    event.preventDefault();
-    window.history.pushState({}, "", event.target.href);
-
-    const navigationEvent = new PopStateEvent("popstate");
-    window.dispatchEvent(navigationEvent);
-  };
-
   return (
     <Box sx={{ flexGrow: 1 }}>
       <AppBar position="static">
@@ -33,19 +27,22 @@ const Header = () => {
             SatroLogo
           </Typography>
           <Button color="inherit">
-            <a onClick={handleOnClick} href="/news">
-              News
-            </a>
+            <Link style={{ color: "white" }} to="/">
+              ToDo
+            </Link>
+            {/* <CustomLink href="/news">News</CustomLink> */}
           </Button>
           <Button color="inherit">
-            <a onClick={handleOnClick} href="/github">
+            <Link style={{ color: "white" }} to="/github">
               Github
-            </a>
+            </Link>
+            {/* <CustomLink href="/github">Github</CustomLink> */}
           </Button>
           <Button color="inherit">
-            <a onClick={handleOnClick} href="/">
-              Todo
-            </a>
+            <Link style={{ color: "white" }} to="/news">
+              News
+            </Link>
+            {/* <CustomLink href="/">ToDo</CustomLink> */}
           </Button>
         </Toolbar>
       </AppBar>

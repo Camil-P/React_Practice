@@ -7,7 +7,8 @@ import {
   CardContent,
 } from "@mui/material";
 
-const newsCardDetail = ({ location }) => {
+const newsCardDetail = ({ nekiState, location }) => {
+  console.log("console " + nekiState);
   const { state } = location;
   const { title, description, urlToImage } = state;
   return (

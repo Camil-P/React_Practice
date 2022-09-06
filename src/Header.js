@@ -8,8 +8,10 @@ import IconButton from "@mui/material/IconButton";
 import MenuIcon from "@mui/icons-material/Menu";
 import CustomLink from "./Link";
 import { Link } from "react-router-dom";
+import FlagButton from "./FlagButton";
+import { Grid } from "@mui/material";
 
-const Header = () => {
+const Header = ({ changeLanguage }) => {
   return (
     <Box sx={{ flexGrow: 1 }}>
       <AppBar position="static">
@@ -44,6 +46,26 @@ const Header = () => {
             </Link>
             {/* <CustomLink href="/">ToDo</CustomLink> */}
           </Button>
+          <Grid item>
+            <Grid container spacing={2}>
+              <Grid item>
+                <FlagButton
+                  handleOnClick={() => changeLanguage("German")}
+                  imgUrl={
+                    "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMcAAAB3CAMAAACAEaSBAAAAGFBMVEUAAAD/zgDdAABvAADoAADaAAD0rAD/0QBKKgvJAAAAgUlEQVR4nO3PwQ2DAAwAsVCg7L8xQ/A5RfYGngEAAAAAAACAD84d5tphfjt4tHi0eLR4tHi0eLR4tHi0eLR4tHi0eLR4tHi0eLR4tHi0eLTMvcP8d5hnhzl28GjxaPFo8WjxaPFo8WjxaPFo8WjxaPFo8WjxaPFo8WjxaPFo2fJ4AcVtaoAIiNiLAAAAAElFTkSuQmCC"
+                  }
+                />
+              </Grid>
+              <Grid item>
+                <FlagButton
+                  handleOnClick={() => changeLanguage("English")}
+                  imgUrl={
+                    "https://upload.wikimedia.org/wikipedia/en/thumb/a/a4/Flag_of_the_United_States.svg/1200px-Flag_of_the_United_States.svg.png"
+                  }
+                />
+              </Grid>
+            </Grid>
+          </Grid>
         </Toolbar>
       </AppBar>
     </Box>

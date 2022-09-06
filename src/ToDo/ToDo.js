@@ -3,7 +3,7 @@ import { useState } from "react";
 import CreateToDo from "./CreateToDo";
 import ToDoList from "./ToDoList";
 
-export default function ToDo() {
+export default function ToDo({ language }) {
   const [tasks, setTasks] = useState([
     {
       name: "okupaj se",
@@ -24,7 +24,7 @@ export default function ToDo() {
   return (
     <Grid container rowSpacing={3}>
       <Grid item xs={6}>
-        <CreateToDo handleAdd={addTask} />
+        <CreateToDo language={language} handleAdd={addTask} />
       </Grid>
       <Grid item xs={6}>
         <ToDoList data={tasks} />

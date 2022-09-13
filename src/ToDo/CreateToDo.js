@@ -1,9 +1,9 @@
 import { Button, Grid, TextField, Typography } from "@mui/material";
 import { useContext, useState } from "react";
-import LanguageContext from "../Contexts/LanguageContext";
+import AppContext from "../Contexts/AppContext";
 
 const CreateToDo = ({ handleAdd }) => {
-  const language = useContext(LanguageContext);
+  const { appState } = useContext(AppContext);
 
   const [toDoObj, setToDoObj] = useState({
     name: "",
@@ -15,7 +15,7 @@ const CreateToDo = ({ handleAdd }) => {
     setToDoObj({ ...toDoObj, [inputType]: value });
   };
 
-  const isEnglishSelected = () => language === "English";
+  const isEnglishSelected = () => appState.language === "English";
 
   return (
     <Grid

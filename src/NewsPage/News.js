@@ -5,6 +5,7 @@ import axios from "axios";
 import { Grid } from "@mui/material";
 import NewsCard from "./NewsCard";
 import { Link } from "react-router-dom";
+import ThemeGrid from "../Core/ThemeGrid";
 
 export default function News() {
   const [news, setNews] = useState([]);
@@ -21,7 +22,7 @@ export default function News() {
   }, []);
 
   return (
-    <Grid
+    <ThemeGrid
       container
       direction="row"
       justifyContent="center"
@@ -34,6 +35,6 @@ export default function News() {
           <NewsCard data={n} />
         </Grid>
       ))}
-    </Grid>
+    </ThemeGrid>
   );
 }

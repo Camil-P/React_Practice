@@ -9,9 +9,12 @@ import MenuIcon from "@mui/icons-material/Menu";
 import CustomLink from "./Link";
 import { Link } from "react-router-dom";
 import FlagButton from "./FlagButton";
-import { Grid } from "@mui/material";
+import { Grid, Switch } from "@mui/material";
+import AppContext from "./Contexts/AppContext";
 
-const Header = ({ changeLanguage }) => {
+const Header = (props) => {
+  const { dispatch, appState } = React.useContext(AppContext);
+
   return (
     <Box sx={{ flexGrow: 1 }}>
       <AppBar position="static">
@@ -50,7 +53,7 @@ const Header = ({ changeLanguage }) => {
             <Grid container spacing={2}>
               <Grid item>
                 <FlagButton
-                  handleOnClick={() => changeLanguage("German")}
+                  handleOnClick={() => dispatch({ type: "setDeutsch" })}
                   imgUrl={
                     "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMcAAAB3CAMAAACAEaSBAAAAGFBMVEUAAAD/zgDdAABvAADoAADaAAD0rAD/0QBKKgvJAAAAgUlEQVR4nO3PwQ2DAAwAsVCg7L8xQ/A5RfYGngEAAAAAAACAD84d5tphfjt4tHi0eLR4tHi0eLR4tHi0eLR4tHi0eLR4tHi0eLR4tHi0eLTMvcP8d5hnhzl28GjxaPFo8WjxaPFo8WjxaPFo8WjxaPFo8WjxaPFo8WjxaPFo2fJ4AcVtaoAIiNiLAAAAAElFTkSuQmCC"
                   }
@@ -58,12 +61,22 @@ const Header = ({ changeLanguage }) => {
               </Grid>
               <Grid item>
                 <FlagButton
-                  handleOnClick={() => changeLanguage("English")}
+                  handleOnClick={() => dispatch({ type: "setEnglish" })}
                   imgUrl={
                     "https://upload.wikimedia.org/wikipedia/en/thumb/a/a4/Flag_of_the_United_States.svg/1200px-Flag_of_the_United_States.svg.png"
                   }
                 />
               </Grid>
+              <Switch
+                checked={appState.theme === "white"}
+                onChange={(event) =>
+                  dispatch({
+                    type: event.target.checked
+                      ? "setLightTheme"
+                      : "setDarkTheme",
+                  })
+                }
+              />
             </Grid>
           </Grid>
         </Toolbar>

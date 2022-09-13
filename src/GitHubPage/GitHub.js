@@ -2,6 +2,7 @@ import { TextField, Grid, Button } from "@mui/material";
 import DisplayCard from "./DisplayCard";
 import axios from "axios";
 import { useEffect, useRef, useState } from "react";
+import ThemeGrid from "../Core/ThemeGrid";
 
 const url = "https://api.github.com/users/";
 
@@ -27,8 +28,7 @@ const GitHub = () => {
   };
 
   return (
-    <Grid
-      container
+    <ThemeGrid
       direction="column"
       justifyContent="center"
       alignItems="center"
@@ -61,7 +61,7 @@ const GitHub = () => {
       <Grid item>
         <DisplayCard data={searchedUser} />
       </Grid>
-    </Grid>
+    </ThemeGrid>
   );
 };
 

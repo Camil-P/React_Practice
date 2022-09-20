@@ -23,7 +23,6 @@ const ThemeGrid = ({
       sx={{
         backgroundColor: appState.theme,
         width: "100%",
-        height: "100vh",
       }}
     >
       {children}

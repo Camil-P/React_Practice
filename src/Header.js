@@ -11,8 +11,10 @@ import { Link } from "react-router-dom";
 import FlagButton from "./FlagButton";
 import { Grid, Switch } from "@mui/material";
 import AppContext from "./Contexts/AppContext";
+import { UserContext } from "./Contexts/UserContext";
 
-const Header = (props) => {
+const Header = () => {
+  const { isUserLogged } = React.useContext(UserContext);
   const { dispatch, appState } = React.useContext(AppContext);
 
   return (
@@ -31,18 +33,36 @@ const Header = (props) => {
           <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
             SatroLogo
           </Typography>
+          {!isUserLogged() && (
+            <Button color="inherit">
+              <Link style={{ color: "white" }} to="/login">
+                Login
+              </Link>
+              {/* <CustomLink href="/news">News</CustomLink> */}
+            </Button>
+          )}
+          {!isUserLogged() && (
+            <Button color="inherit">
+              <Link style={{ color: "white" }} to="/register">
+                Register
+              </Link>
+              {/* <CustomLink href="/news">News</CustomLink> */}
+            </Button>
+          )}
           <Button color="inherit">
             <Link style={{ color: "white" }} to="/">
               ToDo
             </Link>
             {/* <CustomLink href="/news">News</CustomLink> */}
           </Button>
-          <Button color="inherit">
-            <Link style={{ color: "white" }} to="/github">
-              Github
-            </Link>
-            {/* <CustomLink href="/github">Github</CustomLink> */}
-          </Button>
+          {isUserLogged() && (
+            <Button color="inherit">
+              <Link style={{ color: "white" }} to="/github">
+                Github
+              </Link>
+              {/* <CustomLink href="/github">Github</CustomLink> */}
+            </Button>
+          )}
           <Button color="inherit">
             <Link style={{ color: "white" }} to="/news">
               News
@@ -67,16 +87,18 @@ const Header = (props) => {
                   }
                 />
               </Grid>
-              <Switch
-                checked={appState.theme === "white"}
-                onChange={(event) =>
-                  dispatch({
-                    type: event.target.checked
-                      ? "setLightTheme"
-                      : "setDarkTheme",
-                  })
-                }
-              />
+              <Grid>
+                <Switch
+                  checked={appState.theme === "white"}
+                  onChange={(event) =>
+                    dispatch({
+                      type: event.target.checked
+                        ? "setLightTheme"
+                        : "setDarkTheme",
+                    })
+                  }
+                />
+              </Grid>
             </Grid>
           </Grid>
         </Toolbar>

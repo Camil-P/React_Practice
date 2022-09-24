@@ -1,8 +1,9 @@
 import { Button, Grid, TextField } from "@mui/material";
 import axios from "axios";
 import { useContext, useState } from "react";
-import { UserContext } from "../Contexts/UserContext";
+import { UserContext } from "../../Contexts/UserContext";
 import Cookies from 'universal-cookie';
+import { setCookie } from "../../utils";
 
 const Login = () => {
   const [loginData, setLoginData] = useState({ email: "", password: "" });
@@ -24,12 +25,10 @@ const Login = () => {
             refreshToken: data.refreshToken,
           },
         });
-        // const cookies = new Cookies();
-        // cookies.set('accessToken', userState.accessToken);
-        // cookies.set('refreshToken', userState.refreshToken);
-        document.cookie = `accessToken=${data.accesToken};max-age=180`;
-        document.cookie = `refreshToken=${data.refreshToken};max-age=360`;
-        console.log(data.accesToken, data.refreshToken);
+        setCookie("accessToken", data.accesToken, 180);
+        setCookie("refreshToken", data.refreshToken, 360);
+        // document.cookie = `accessToken=${data.accesToken};max-age=180`;
+        // document.cookie = `refreshToken=${data.refreshToken};max-age=360`;
       }
       )
       .catch((e) => console.log(e));

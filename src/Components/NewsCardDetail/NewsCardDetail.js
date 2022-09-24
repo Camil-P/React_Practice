@@ -8,8 +8,8 @@ import {
   Grid,
 } from "@mui/material";
 import { useContext } from "react";
-import AppContext from "../Contexts/AppContext";
-import ThemeGrid from "../Core/ThemeGrid";
+import AppContext from "../../Contexts/AppContext";
+import ThemeGrid from "../../Core/ThemeGrid";
 
 const NewsCardDetail = ({ nekiState, location }) => {
   const { state } = location;

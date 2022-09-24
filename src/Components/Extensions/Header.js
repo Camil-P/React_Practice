@@ -6,16 +6,24 @@ import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
 import IconButton from "@mui/material/IconButton";
 import MenuIcon from "@mui/icons-material/Menu";
-import CustomLink from "./Link";
+import CustomLink from "../../Core/RouterComponents/Link";
 import { Link } from "react-router-dom";
-import FlagButton from "./FlagButton";
+import FlagButton from "../../Core/FlagButton";
 import { Grid, Switch } from "@mui/material";
-import AppContext from "./Contexts/AppContext";
-import { UserContext } from "./Contexts/UserContext";
+import AppContext from "../../Contexts/AppContext";
+import { UserContext } from "../../Contexts/UserContext";
+import { clearCookie } from "../../utils";
 
 const Header = () => {
-  const { isUserLogged } = React.useContext(UserContext);
+  const { isUserLogged, dispatchUserState } = React.useContext(UserContext);
   const { dispatch, appState } = React.useContext(AppContext);
+
+  const logout = () => {
+    clearCookie("accessToken");
+    clearCookie("refreshToken");
+    dispatchUserState({ type: "clearTokens" });
+    window.history.pushState(null, "", "/");
+  };
 
   return (
     <Box sx={{ flexGrow: 1 }}>
@@ -69,6 +77,12 @@ const Header = () => {
             </Link>
             {/* <CustomLink href="/">ToDo</CustomLink> */}
           </Button>
+          <Button color="inherit">
+            <Link style={{ color: "white" }} to="/useReducerVezba">
+              Calculator
+            </Link>
+            {/* <CustomLink href="/">ToDo</CustomLink> */}
+          </Button>
           <Grid item>
             <Grid container spacing={2}>
               <Grid item>
@@ -99,6 +113,11 @@ const Header = () => {
                   }
                 />
               </Grid>
+              {isUserLogged() && (
+                <Button onClick={logout} color="inherit">
+                  Logout
+                </Button>
+              )}
             </Grid>
           </Grid>
         </Toolbar>

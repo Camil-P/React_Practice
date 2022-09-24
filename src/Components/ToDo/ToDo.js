@@ -1,6 +1,6 @@
 import { Grid } from "@mui/material";
 import { useState } from "react";
-import ThemeGrid from "../Core/ThemeGrid";
+import ThemeGrid from "../../Core/ThemeGrid";
 import CreateToDo from "./CreateToDo";
 import ToDoList from "./ToDoList";
 

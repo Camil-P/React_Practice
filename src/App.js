@@ -1,30 +1,26 @@
 import { useContext, useEffect, useReducer, useState } from "react";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 import AppContext from "./Contexts/AppContext";
-import UserContextProvider, { UserContext } from "./Contexts/UserContext";
-import ErrorPage from "./ErrorPage";
-import GitHub from "./GitHubPage/GitHub";
-import Header from "./Header";
-import Login from "./Login/Login";
-import NewsCardDetail from "./NewsCardDetail/NewsCardDetail";
-import News from "./NewsPage/News";
+import { UserContext } from "./Contexts/UserContext";
+import ErrorPage from "./Components/Extensions/ErrorPage";
+import GitHub from "./Components/GitHubPage/GitHub";
+import Header from "./Components/Extensions/Header";
+import Login from "./Components/Login/Login";
+import NewsCardDetail from "./Components/NewsCardDetail/NewsCardDetail";
+import News from "./Components/NewsPage/News";
 import appSettingsReducer from "./Reducer/appSettingsReducer";
-import ToDo from "./ToDo/ToDo";
+import ToDo from "./Components/ToDo/ToDo";
+import VezbajUseReducer from "./Components/VezbaZaReducer/VezbaUseReducer";
+import { getCookie } from "./utils";
 
 export default function App() {
   const { isUserLogged, dispatchUserState } = useContext(UserContext);
   console.log("Cookie: " + document.cookie);
 
   useEffect(() => {
-    const accessTokenFromCookie = document.cookie
-      .split(";")
-      .find((row) => row.includes("accessToken="))
-      ?.split("=")[1];
+    const accessTokenFromCookie = getCookie("accessToken");
 
-    const refreshTokenFromCookie = document.cookie
-      .split(";")
-      .find((row) => row.includes("refreshToken="))
-      ?.split("=")[1];
+    const refreshTokenFromCookie = getCookie("refreshToken");
 
     console.log(accessTokenFromCookie, refreshTokenFromCookie);
     
@@ -57,6 +53,7 @@ export default function App() {
               path="/news-card"
               render={(props) => <NewsCardDetail {...props} />}
             />
+            <Route path="/useReducerVezba" component={VezbajUseReducer} />
             <Route path="*" component={ErrorPage} />
           </Switch>
         </AppContext.Provider>

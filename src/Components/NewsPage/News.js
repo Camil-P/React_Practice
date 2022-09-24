@@ -1,11 +1,11 @@
 import * as React from "react";
-import { NEWS_KEY } from "../constants";
+import { NEWS_KEY } from "../../constants";
 import { useState, useEffect } from "react";
 import axios from "axios";
 import { Grid } from "@mui/material";
 import NewsCard from "./NewsCard";
 import { Link } from "react-router-dom";
-import ThemeGrid from "../Core/ThemeGrid";
+import ThemeGrid from "../../Core/ThemeGrid";
 
 export default function News() {
   const [news, setNews] = useState([]);

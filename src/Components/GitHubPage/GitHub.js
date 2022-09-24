@@ -2,7 +2,7 @@ import { TextField, Grid, Button } from "@mui/material";
 import DisplayCard from "./DisplayCard";
 import axios from "axios";
 import { useEffect, useRef, useState } from "react";
-import ThemeGrid from "../Core/ThemeGrid";
+import ThemeGrid from "../../Core/ThemeGrid";
 
 const url = "https://api.github.com/users/";
 

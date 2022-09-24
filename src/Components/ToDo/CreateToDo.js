@@ -1,6 +1,6 @@
 import { Button, Grid, TextField, Typography } from "@mui/material";
 import { useContext, useState } from "react";
-import AppContext from "../Contexts/AppContext";
+import AppContext from "../../Contexts/AppContext";
 
 const CreateToDo = ({ handleAdd }) => {
   const { appState } = useContext(AppContext);

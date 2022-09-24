@@ -1,10 +1,11 @@
 import * as React from "react";
-import { NEWS_KEY } from "../constants";
+import { NEWS_KEY } from "../../constants";
 import { useState, useEffect } from "react";
 import axios from "axios";
 import { Grid } from "@mui/material";
 import NewsCard from "./NewsCard";
 import { Link } from "react-router-dom";
+import ThemeGrid from "../../Core/ThemeGrid";
 
 export default function News() {
   const [news, setNews] = useState([]);
@@ -21,7 +22,7 @@ export default function News() {
   }, []);
 
   return (
-    <Grid
+    <ThemeGrid
       container
       direction="row"
       justifyContent="center"
@@ -31,11 +32,9 @@ export default function News() {
     >
       {news.map((n, i) => (
         <Grid xs="auto">
-          <Link to={{ pathname: "/news-card/" + i, state: n }}>
-            <NewsCard data={n} />
-          </Link>
+          <NewsCard data={n} />
         </Grid>
       ))}
-    </Grid>
+    </ThemeGrid>
   );
 }

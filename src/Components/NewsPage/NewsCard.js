@@ -15,6 +15,7 @@ import ShareIcon from "@mui/icons-material/Share";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
 import { useState } from "react";
+import { Link } from "react-router-dom";
 
 const ExpandMore = styled((props) => {
   const { expand, ...other } = props;
@@ -27,7 +28,8 @@ const ExpandMore = styled((props) => {
   }),
 }));
 
-export default function NewsCard({ data }) {
+export default function NewsCard(props) {
+  const { data } = props;
   const [expanded, setExpanded] = useState(false);
 
   const handleExpandClick = () => {
@@ -36,31 +38,33 @@ export default function NewsCard({ data }) {
 
   return (
     <Card sx={{ maxWidth: 345 }}>
-      <CardHeader
-        avatar={
-          <Avatar sx={{ bgcolor: red[500] }} aria-label="recipe">
-            R
-          </Avatar>
-        }
-        action={
-          <IconButton aria-label="settings">
-            <MoreVertIcon />
-          </IconButton>
-        }
-        title={data.title}
-        subheader={data.publishedAt}
-      />
-      <CardMedia
-        component="img"
-        height="194"
-        image={data.urlToImage}
-        alt="Paella dish"
-      />
-      <CardContent>
-        <Typography variant="body2" color="text.secondary">
-          {data.source.name}
-        </Typography>
-      </CardContent>
+      <Link to={{ pathname: "/news-card/", state: props.data }}>
+        <CardHeader
+          avatar={
+            <Avatar sx={{ bgcolor: red[500] }} aria-label="recipe">
+              R
+            </Avatar>
+          }
+          action={
+            <IconButton aria-label="settings">
+              <MoreVertIcon />
+            </IconButton>
+          }
+          title={data.title}
+          subheader={data.publishedAt}
+        />
+        <CardMedia
+          component="img"
+          height="194"
+          image={data.urlToImage}
+          alt="Paella dish"
+        />
+        <CardContent>
+          <Typography variant="body2" color="text.secondary">
+            {data.source.name}
+          </Typography>
+        </CardContent>
+      </Link>
       <CardActions disableSpacing>
         <IconButton aria-label="add to favorites">
           <FavoriteIcon />

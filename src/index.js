@@ -1,7 +1,12 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 import App from "./App";
+import UserContextProvider from "./Contexts/UserContext";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 
-root.render(<App></App>);
+root.render(
+  <UserContextProvider>
+    <App></App>
+  </UserContextProvider>
+);

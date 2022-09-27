@@ -7,7 +7,7 @@ import Button from "@mui/material/Button";
 import IconButton from "@mui/material/IconButton";
 import MenuIcon from "@mui/icons-material/Menu";
 import CustomLink from "../../Core/RouterComponents/Link";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import FlagButton from "../../Core/FlagButton";
 import { Grid, Switch } from "@mui/material";
 import AppContext from "../../Contexts/AppContext";
@@ -17,12 +17,13 @@ import { clearCookie } from "../../utils";
 const Header = () => {
   const { isUserLogged, dispatchUserState } = React.useContext(UserContext);
   const { dispatch, appState } = React.useContext(AppContext);
+  const history = useHistory();
 
   const logout = () => {
     clearCookie("accessToken");
     clearCookie("refreshToken");
     dispatchUserState({ type: "clearTokens" });
-    window.history.pushState(null, "", "/");
+    history.pushState(null, "", "/");
   };
 
   return (

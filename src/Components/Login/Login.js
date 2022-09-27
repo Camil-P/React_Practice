@@ -4,20 +4,22 @@ import { useContext, useState } from "react";
 import { UserContext } from "../../Contexts/UserContext";
 import Cookies from 'universal-cookie';
 import { setCookie } from "../../utils";
+import { useHistory } from "react-router-dom";
 
 const Login = () => {
   const [loginData, setLoginData] = useState({ email: "", password: "" });
   const { userState, dispatchUserState } = useContext(UserContext);
 
   const submitLogin = () => {
-    const { email, password } = loginData;
-    const loginBody = { email, password };
+    // const { email, password } = loginData;
+    // const loginBody = { email, password };
+    const history = useHistory();
 
     axios
-      .post("http://localhost:8000/api/sessions", loginBody)
+      .post("http://localhost:8000/api/sessions", loginData)
       .then(({ data }) =>
       {
-        window.history.pushState(null, "", "http://localhost:3000/github");
+        history.pushState(null, "", "http://localhost:3000/github");
         dispatchUserState({
           type: "setTokens",
           value: {
